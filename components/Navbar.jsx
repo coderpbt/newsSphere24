@@ -1,7 +1,12 @@
+import { auth } from "@/auth";
 import Link from "next/link";
+import Logout from "./Logout/Logout";
+import { getAllCategory } from "@/database/queries";
 
 const Navbar = async ({sideMenu}) => {
-  console.log("sideMenu", sideMenu);
+ const session = await auth();
+ const navBar = await getAllCategory();
+ 
   return (
     <div>
       <div className="container mx-auto">
@@ -11,15 +16,29 @@ const Navbar = async ({sideMenu}) => {
           </div>
           <nav>
             <div>
-              <ul className="flex items-center gap-2.5 justify-end">
-                <li><Link href="/login">Yeasin</Link></li>
-                <li><Link href="/login">Login</Link></li>
+            <ul className="flex items-center gap-2.5 justify-end">
+                <li>
+                  {session ? (
+                    <div className="flex items-center gap-1.5">
+                      <span className="mx-1">{session.user?.name}</span>
+                      <span>|</span>
+                      <Logout />
+                    </div>
+                  ) : (
+                    <Link href="/login" className="login">Login</Link>
+                  )}
+                </li>
               </ul>
+
+
             </div>
-            <ul className="flex items-center gap-2.5">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/">About</Link></li>
-              <li><Link href="/">Contact</Link></li>
+            <ul className="flex items-center gap-4">
+              {
+                navBar?.map((nav)=>
+                   <li className="font-medium" key={nav._id}><Link href={nav.cname}>{nav.cname}</Link></li>
+                )
+              }
+             
             </ul>
           </nav>
         </div>

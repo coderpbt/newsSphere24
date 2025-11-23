@@ -1,29 +1,20 @@
-"use server";
+"use server"
 
-import { signIn } from "@/auth";
+import { signIn} from "@/auth";
 import { userModel } from "@/database/models/users-model";
 import { dbConnect } from "@/lib/mongoConnect";
-import { AuthError } from "next-auth";
 import bcrypt from "bcryptjs";
 
 export async function login(formData) {
     try {
-        const response = await signIn("credentials", {
+       const response = await signIn("credentials", {
             email: formData.get("email"),
             password: formData.get("password"),
-            redirect: false,
-        });
-        return { success: true };
-    } catch (error) {
-        if (error instanceof AuthError) {
-            switch (error.type) {
-                case "CredentialsSignin":
-                    return { error: "Invalid email or password" };
-                default:
-                    return { error: "Something went wrong" };
-            }
-        }
-        throw error;
+            redirect: false
+        })
+        return response;
+    } catch(error) {
+        throw new Error(error);
     }
 }
 
@@ -33,7 +24,6 @@ export async function register(formData) {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    // Validation
     if (!name || !email || !password) {
         return { error: "All fields are required" };
     }
@@ -45,7 +35,6 @@ export async function register(formData) {
     try {
         await dbConnect();
 
-        // Check if user already exists
         const existingUser = await userModel.findOne({ email }).lean();
 
         if (existingUser) {

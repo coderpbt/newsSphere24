@@ -1,6 +1,5 @@
 "use client";
 
-
 import { register } from "@/app/actions";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -25,7 +24,6 @@ const RegisterForm = () => {
                 setError(response.error);
             } else if (response?.success) {
                 setSuccess(response.message);
-                // Redirect to login after 2 seconds
                 setTimeout(() => {
                     router.push("/login");
                 }, 2000);
@@ -100,7 +98,7 @@ const RegisterForm = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-blue-400 disabled:cursor-not-allowed"
+                        className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition cursor-pointer disabled:bg-blue-400 disabled:cursor-not-allowed"
                     >
                         {loading ? "Registering..." : "Register"}
                     </button>
