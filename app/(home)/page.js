@@ -1,11 +1,14 @@
+import CategoryPage from "@/components/CategoryPage/CategoryPage";
+import HomePage from "@/components/Home/HomePage";
+import SinglePage from "@/components/SinglePage/SinglePage";
 
 
 export default function Home() {
   return (
     <>
-       <h1 className="text-3xl underline text-center">
-        Business Mail Pbt
-      </h1>
+      <HomePage />
+      {/* <CategoryPage /> */}
+      {/* <SinglePage /> */}
     </>
   );
 }
