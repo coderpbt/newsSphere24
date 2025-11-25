@@ -7,21 +7,17 @@ const HomePage = async () => {
   const relesePost = await getReleasePost();
   const CategoryIndexPost = await getCategoryIndexPost();
 
-  console.log("CategoryIndexPost", CategoryIndexPost);
   return (
-    <div>
-  
+    <>
     <div className="min-h-screen bg-white text-gray-800">
 
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 py-3 text-sm text-gray-500">HOME</div>
 
-      {/* Hero: left big article + right column of smaller headlines */}
-      <main className="container mx-auto px-4">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <RelesePost relesePost={relesePost} />
-          <CategoryByPost CategoryIndexPost={CategoryIndexPost} />
-         
+          <CategoryByPost CategoryIndexPost={CategoryIndexPost} />        
         </div>
 
         {/* Most Recent / Two-column ranked list */}
@@ -119,12 +115,12 @@ const HomePage = async () => {
           </div>
         </section>
 
-      </main>
+      </div>
 
 
     </div>
 
-    </div>
+    </>
   );
 };
 

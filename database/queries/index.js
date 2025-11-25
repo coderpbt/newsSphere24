@@ -1,17 +1,24 @@
+import { dbConnect } from "@/lib/mongoConnect";
 import { categoriesModel } from "../models/categories-models";
 import { postModel } from "../models/posts-model";
 
+//Get All Category
 export async function getAllCategory(){
+   await dbConnect();
   const category =  await categoriesModel.find().lean();
   return category;
 }
 
+//Get All Post
 export async function getAllPost(){
+   await dbConnect();
   const post =  await postModel.find().lean();
   return post;
 }
 
+//Get Release Post
 export async function getReleasePost() {
+   await dbConnect();
   const post = await postModel
     .find()
     .sort({ createdAt: -1 })  
@@ -20,25 +27,28 @@ export async function getReleasePost() {
   return post;
 }
 
+//Get category wise Index Post
 export async function getCategoryIndexPost() {
+   await dbConnect();
   const posts = await postModel.aggregate([
-    // Sort by createdAt descending so newest posts come first
     { $sort: { createdAt: -1 } },
-
-    // Group by category, take the first (newest) post in each category
     {
       $group: {
-        _id: "$category",       // group by category
-        post: { $first: "$$ROOT" }  // take the whole post document
+        _id: "$category",      
+        post: { $first: "$$ROOT" }  
       }
     },
 
-    // Replace root so we just get the post object
     { $replaceRoot: { newRoot: "$post" } },
-
-    // Optional: sort by createdAt descending again
     { $sort: { createdAt: -1 } }
   ]);
 
   return posts;
+}
+
+
+export async function getPostBySlug(slug){
+  await dbConnect();
+  const postSlug =  await postModel.findOne({slug: slug}).lean();
+  return postSlug;
 }

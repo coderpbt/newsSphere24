@@ -10,8 +10,8 @@ const RelesePost = ({relesePost}) => {
               {
                 relesePost?.map((post) => 
                   <div key={post._id}>
-                       <Link href={post.slug} className="text-2xl md:text-4xl font-semibold mb-4 block hover:underline">{post.title}</Link>
-                       <Link href={post.slug}>
+                       <Link href={`/slug/${post.slug}`} className="text-2xl md:text-4xl font-semibold mb-4 block hover:underline">{post.title}</Link>
+                       <Link href={`/slug/${post.slug}`}>
                         <Image
                           src={post.featuredImage}
                           alt="hero"
@@ -20,7 +20,7 @@ const RelesePost = ({relesePost}) => {
                           className="w-full h-90 object-cover rounded-none"
                         />
                        </Link>
-                       <Link href={post.slug} className="text-gray-600 mt-5 block">{post.content}</Link>
+                       <Link href={`/slug/${post.slug}`} className="text-gray-600 mt-5 block">{post.content}</Link>
                   </div>
                 )
               }
