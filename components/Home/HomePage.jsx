@@ -1,19 +1,19 @@
-import { getAllPost, getCategoryIndexPost, getReleasePost } from "@/database/queries";
+import { getAllPost, getCategoryIndexPost, getMostRecentPost, getReleasePost } from "@/database/queries";
 import RelesePost from "./GetPosts/RelesePost";
 import CategoryByPost from "./GetPosts/CategoryByPost";
+import MostRecentPost from "./GetPosts/MostRecentPost";
 
 const HomePage = async () => {
   const posts = await getAllPost();
   const relesePost = await getReleasePost();
   const CategoryIndexPost = await getCategoryIndexPost();
+  const recentPost = await getMostRecentPost();
+
 
   return (
     <>
     <div className="min-h-screen bg-white text-gray-800">
-
-      {/* Breadcrumb */}
       <div className="container mx-auto px-4 py-3 text-sm text-gray-500">HOME</div>
-
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <RelesePost relesePost={relesePost} />
@@ -23,35 +23,9 @@ const HomePage = async () => {
         {/* Most Recent / Two-column ranked list */}
         <section className="mt-8">
           <h2 className="text-xl font-semibold text-red-600">Most Recent</h2>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
             {/* Left big list */}
-            <div className="md:col-span-2 bg-white">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {Array.from({ length: 15 }).map((_, idx) => (
-                  <article key={idx} className="flex gap-3 items-start">
-                    <div className="w-12 h-8 bg-gray-100 flex items-center justify-center text-xs font-semibold">{idx + 1}.</div>
-                    <div>
-                      <h4 className="text-sm font-medium">Headline item {idx + 1} — a compact title to match the layout</h4>
-                      <p className="text-xs text-gray-500">Small meta text</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            {/* Right column small widgets */}
-            <div className="space-y-4">
-              <div className="p-3 border rounded">
-                <h3 className="text-sm font-semibold">Editor&apos;s Pick</h3>
-                <p className="text-xs text-gray-500 mt-2">Short pick description with link.</p>
-              </div>
-
-              <div className="p-3 border rounded">
-                <h3 className="text-sm font-semibold">Most Popular</h3>
-                <p className="text-xs text-gray-500 mt-2">Popular list placeholder.</p>
-              </div>
-            </div>
+            <MostRecentPost recentPost={recentPost} /> 
           </div>
         </section>
 
@@ -101,7 +75,7 @@ const HomePage = async () => {
         </section>
 
         {/* Press release carousel-like strip */}
-        <section className="mt-10">
+        <section className="mt-10 mb-8">
           <h2 className="text-lg font-semibold text-red-600">PRESS RELEASE</h2>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
             {Array.from({ length: 4 }).map((_, i) => (

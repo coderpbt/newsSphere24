@@ -2,7 +2,6 @@ import Image from 'next/image';
 import React from 'react';
 
 const SinglePage = ({detaisPost}) => {
-  console.log("detaisPostX", detaisPost);
   return (
     <div>
     <div className="min-h-screen bg-white text-gray-800">
@@ -28,7 +27,7 @@ const SinglePage = ({detaisPost}) => {
           {/* Meta Info */}
           <div className="flex flex-wrap items-center gap-3 mt-4 text-sm">
             <span className="font-semibold">Created by </span>
-            <span className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded text-xs">{detaisPost.author}</span>
+            <span className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded text-xs">{detaisPost.authorName}</span>
             <span className="text-gray-500">{detaisPost.updatedAt}</span>
           </div>
 
@@ -39,16 +38,16 @@ const SinglePage = ({detaisPost}) => {
             </p>         
           </article>
 
-<div className="flex flex-wrap gap-2 mt-4 mb-9">
-  {detaisPost?.tags?.map((tag, i) => (
-    <span
-      key={i}
-      className="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition"
-    >
-      {tag}
-    </span>
-  ))}
-</div>
+          <div className="flex flex-wrap gap-2 mt-4 mb-9">
+            {detaisPost?.tags?.map((tag, i) => (
+              <span
+                key={i}
+                className="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Sidebar */}
