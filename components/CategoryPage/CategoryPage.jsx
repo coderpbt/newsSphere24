@@ -1,57 +1,76 @@
-import React from 'react';
+import { bdTime, formatLocalTimes } from "@/lib/formateTime";
+import Image from "next/image";
+import Link from "next/link";
+import MostRecentPost from "../Home/GetPosts/MostRecentPost";
 
-const CategoryPage = () => {
+const CategoryPage = ({post, recentPost}) => {
+  const firstPost = post[0];
+  const relatedPosts = post.slice(1);
+  console.log("firstPost", firstPost);
+  console.log("relatedPosts", relatedPosts);
+
   return (
     <div>
     <div className="min-h-screen bg-white text-gray-800">
       {/* Breadcrumb */}
-      <div className="container mx-auto px-4 py-4 text-xs text-gray-500 uppercase">HOME &gt; ENTERTAINMENT</div>
+      <div className="container mx-auto px-4 py-4 text-xs text-gray-500 uppercase">HOME &gt; {firstPost.cname}</div>
 
       {/* Article Section */}
       <section className="container mx-auto px-4">
-        <div className="bg-white border rounded-lg p-6 shadow-sm">
-          <h1 className="text-2xl md:text-3xl font-semibold leading-snug">
-            Why did Cartier refuse Diljit Dosanjh the Patiala necklace for Met Gala?
-          </h1>
+        <div className="bg-white border rounded-lg p-6 shadow-sm grid grid-cols-2 gap-5">
+          <div>
+               <Link href={`/slug/${firstPost.slug}`} className="text-2xl md:text-3xl font-semibold leading-snug hover:underline">
+                  {firstPost.title}
+                </Link >
 
-          <div className="flex items-center gap-3 mt-4 text-sm">
-            <span className="font-semibold">Admin User</span>
-            <span className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded text-xs">ADMIN</span>
-          </div>
+                <div className="flex items-center gap-3 mt-4 text-sm">
+                  <span className="font-semibold">Admin User</span>
+                  <Link href={`/slug/${firstPost.slug}`} className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded text-xs"> {firstPost.authorName}</Link>
+                </div>
 
-          <p className="text-xs text-gray-500 mt-1">May 8, 2025, 9:44 AM</p>
+                <p className="text-xs text-gray-500 mt-1">{bdTime(firstPost.updatedAt)}</p>
 
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* <img
-              src="/mnt/data/screencapture-businessmailusa-vercel-app-entertainment-2025-11-24-23_58_42.png"
-              alt="article"
-              className="w-full h-80 object-cover rounded"
-            />
-            <img
-              src="/mnt/data/screencapture-businessmailusa-vercel-app-entertainment-2025-11-24-23_58_42.png"
-              alt="article"
-              className="w-full h-80 object-cover rounded"
-            /> */}
-          </div>
-
-          <p className="mt-4 text-gray-700 leading-relaxed text-sm">
-            Indian actor-singer Diljit Dosanjh turned heads on Tuesday with a bold and culturally rich debut at the Met Gala,
-            fashions most iconic night. Dressed in an ivory sherwani embroidered with the map of Punjab and Gurmukhi script,
-            he brought global attention to his heritage — marrying traditional pride with modern glam...
+                          <p className="mt-4 text-gray-700 leading-relaxed text-sm">
+            {firstPost.content}
           </p>
 
-          <button className="mt-4 bg-red-600 text-white px-4 py-2 text-sm rounded hover:bg-red-700">Read More</button>
+          <Link href={`/slug/${firstPost.slug}`} className="mt-4 inline-block bg-red-600 text-white px-4 py-2 text-sm rounded hover:bg-red-700">Read More</Link>
+          </div>
+         
+          <div className="mt-4">
+            <Link href={`/slug/${firstPost.slug}`}>
+                <Image
+                  src={firstPost?.featuredImage}
+                  alt="Category"
+                  width={1500}       
+                  height={1000}       
+                  className="w-full h-90 object-cover rounded-none"
+                />
+            </Link>
+          </div>
+
+
         </div>
       </section>
 
       {/* Related Stories */}
       <section className="container mx-auto px-4 mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[1, 2, 3].map((i) => (
-          <article key={i} className="flex gap-3 items-start border rounded p-3">
-            <div className="w-24 h-16 bg-gray-200 rounded"></div>
-            <p className="text-sm font-medium leading-tight">
-              Sample related story title {i} goes here in two lines.
-            </p>
+        {relatedPosts.map((i) => (
+          <article key={i._id} className="flex gap-3 items-start border rounded p-3">
+            <div className="w-24 h-16 bg-gray-200 rounded">
+               <Link href={`/slug/${firstPost.slug}`}>
+                <Image
+                  src={firstPost?.featuredImage}
+                  alt="Category"
+                  width={1000}       
+                  height={40}       
+                  className="w-full h-16 object-cover rounded"
+                />
+            </Link>
+            </div>
+            <Link href={`/slug/${i.slug}`} className="text-sm font-medium leading-tight hover:underline">
+              {i.title}
+            </Link>
           </article>
         ))}
       </section>
@@ -75,12 +94,7 @@ const CategoryPage = () => {
         <div>
           <h2 className="text-lg font-semibold text-red-600 mb-4">MOST RECENT</h2>
           <div className="space-y-4">
-            {[1, 2, 3, 4, 5].map((n) => (
-              <div key={n} className="flex gap-3 items-start">
-                <span className="text-red-600 font-bold text-xl">{n}.</span>
-                <p className="text-sm leading-tight">Recent item headline {n} — short preview text...</p>
-              </div>
-            ))}
+            <MostRecentPost recentPost={recentPost} /> 
           </div>
         </div>
       </section>

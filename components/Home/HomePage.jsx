@@ -7,7 +7,7 @@ const HomePage = async () => {
   const posts = await getAllPost();
   const relesePost = await getReleasePost();
   const CategoryIndexPost = await getCategoryIndexPost();
-  const recentPost = await getMostRecentPost();
+  const recentPost = await getMostRecentPost(15);
 
 
   return (

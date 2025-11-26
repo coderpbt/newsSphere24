@@ -9,6 +9,15 @@ export async function getAllCategory(){
   return category;
 }
 
+//Get All CategoryWise Post
+export async function getCategoryWisePost(categoryName){
+   await dbConnect();
+  const categoryWise =  await postModel
+  .find({cname : categoryName})
+  .lean();
+  return categoryWise;
+}
+
 //Get All Post
 export async function getAllPost(){
    await dbConnect();
@@ -54,12 +63,12 @@ export async function getPostBySlug(slug){
 }
 
 
-export async function getMostRecentPost(){
+export async function getMostRecentPost(limt){
     await dbConnect();
     const recentPost =  await postModel
     .find()
     .sort({ createdAt: -1 })
-    .limit(15) 
+    .limit(limt) 
     .lean(); 
 
     return recentPost;

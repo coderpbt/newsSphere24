@@ -1,5 +1,5 @@
+import { bdTime } from '@/lib/formateTime';
 import Image from 'next/image';
-import React from 'react';
 
 const SinglePage = ({detaisPost}) => {
   return (
@@ -28,7 +28,7 @@ const SinglePage = ({detaisPost}) => {
           <div className="flex flex-wrap items-center gap-3 mt-4 text-sm">
             <span className="font-semibold">Created by </span>
             <span className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded text-xs">{detaisPost.authorName}</span>
-            <span className="text-gray-500">{detaisPost.updatedAt}</span>
+            <span className="text-gray-500">{bdTime(detaisPost.updatedAt)}</span>
           </div>
 
           {/* Article Text */}
