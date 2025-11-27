@@ -12,7 +12,7 @@ const Navbar = async ({sideMenu}) => {
       <div className="container mx-auto">
         <div className="flex justify-between items-center py-2.5">
           <div>
-            <Link className="font-bold text-4xl" href="/">NewsSphere 24</Link>
+            <Link className="font-bold text-[30px]" href="/">NewsSphere 24</Link>
           </div>
           <nav>
             <div>
@@ -35,7 +35,7 @@ const Navbar = async ({sideMenu}) => {
             <ul className="flex items-center gap-4">
               {
                 navBar?.map((nav)=>
-                   <li className="font-medium" key={nav._id}><Link href={nav.cname}>{nav.cname}</Link></li>
+                   <li className="font-medium" key={nav._id}><Link href={`/${nav.cname}`}>{nav.cname}</Link></li>
                 )
               }
              

@@ -1,15 +1,15 @@
 
 import SinglePage from '@/components/SinglePage/SinglePage';
-import { getPostBySlug } from '@/database/queries';
+import { getMostRecentPost, getPostBySlug } from '@/database/queries';
 
 const DetalisPost = async ({params}) => {
   const {slug} = await params;
   const detaisPost = await getPostBySlug(slug);
-
+  const recentPost = await getMostRecentPost(5);
   return (
-    <div>
-      <SinglePage detaisPost={detaisPost} />
-    </div>
+    <>
+      <SinglePage detaisPost={detaisPost} recentPost={recentPost} />
+    </>
   );
 };
 

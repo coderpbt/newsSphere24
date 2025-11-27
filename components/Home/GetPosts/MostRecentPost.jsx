@@ -3,7 +3,6 @@ import Link from "next/link";
 
 const MostRecentPost = ({ recentPost }) => {
   const isGrid = recentPost?.length >= 15;
-
   return (
     <div className="md:col-span-3 bg-white">
       <div
@@ -19,15 +18,15 @@ const MostRecentPost = ({ recentPost }) => {
               {idx + 1}.
             </div>
 
-            <Link className="flex gap-2.5" href={`/slug/${post.slug}`}>
+            <Link className="grid grid-cols-2 gap-2.5" href={`/${post.cname}/${post.slug}`}>
               <Image
                 src={post.featuredImage}
                 alt="hero"
-                width={1000}
-                height={50}
-                className="w-full h-20 object-cover rounded"
+                width={isGrid ? 1000 : 800}  
+                height={isGrid ? 50 : 80}  
+                className={`${isGrid ? "w-full" : "w-[80%] mx-auto"} ${isGrid ? "h-20" : "h-[81px]"} object-cover rounded`}
               />
-              <h4 className="text-sm font-medium">{post.title}</h4>
+              <h4 className="text-sm font-medium">{isGrid ? post.title : post.title}</h4>
             </Link>
           </article>
         ))}

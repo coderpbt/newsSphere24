@@ -26,12 +26,12 @@ export async function getAllPost(){
 }
 
 //Get Release Post
-export async function getReleasePost() {
+export async function getReleasePost(limit) {
    await dbConnect();
   const post = await postModel
     .find()
     .sort({ createdAt: -1 })  
-    .limit(1)                 
+    .limit(limit)                 
     .lean();
   return post;
 }
@@ -55,14 +55,14 @@ export async function getCategoryIndexPost() {
   return posts;
 }
 
-
+//Get Post By Slug
 export async function getPostBySlug(slug){
   await dbConnect();
   const postSlug =  await postModel.findOne({slug: slug}).lean();
   return postSlug;
 }
 
-
+//Get Most Recent Post
 export async function getMostRecentPost(limt){
     await dbConnect();
     const recentPost =  await postModel
@@ -70,6 +70,27 @@ export async function getMostRecentPost(limt){
     .sort({ createdAt: -1 })
     .limit(limt) 
     .lean(); 
-
     return recentPost;
+}
+
+//Get Most Popular Post
+export async function getMostPopularPost(limit) {
+  await dbConnect();
+  const popularPost = await postModel
+    .find({}, "title featuredImage slug viewCount cname title excerpt")
+    .sort({ viewCount: -1 })
+    .limit(limit)
+    .lean();
+  return popularPost;
+}
+
+//Get Post By Category List -> Home
+export async function getPostByCategoryList(categories, limit = 4) {
+  await dbConnect();
+  const categoryList = await postModel
+    .find({ cname: {$in : categories}})
+    .sort({ createdAt : -1 })
+    .limit(limit * categories.length)
+    .lean();
+  return categoryList;
 }

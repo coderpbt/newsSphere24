@@ -1,6 +1,7 @@
 "use client";
 
 import { register } from "@/app/actions";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -106,9 +107,9 @@ const RegisterForm = () => {
 
                 <p className="text-center text-gray-600 mt-4">
                     Already have an account?{" "}
-                    <a href="/login" className="text-blue-600 hover:underline">
+                    <Link href="/login" className="text-blue-600 hover:underline">
                         Login
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

@@ -30,10 +30,10 @@ const Footer = () => {
         <div>
           <h2 className="text-white font-semibold text-lg mb-3">Categories</h2>
           <ul className="space-y-2">
-            <li><Link href="/category/finance" className="hover:text-white">Finance</Link></li>
-            <li><Link href="/category/technology" className="hover:text-white">Technology</Link></li>
-            <li><Link href="/category/health" className="hover:text-white">Health</Link></li>
-            <li><Link href="/category/education" className="hover:text-white">Education</Link></li>
+            <li><Link href="/Finance" className="hover:text-white">Finance</Link></li>
+            <li><Link href="/Technology" className="hover:text-white">Technology</Link></li>
+            <li><Link href="/Health" className="hover:text-white">Health</Link></li>
+            <li><Link href="/Education" className="hover:text-white">Education</Link></li>
           </ul>
         </div>
 

@@ -1,7 +1,8 @@
 import { bdTime } from '@/lib/formateTime';
 import Image from 'next/image';
+import MostRecentPost from '../Home/GetPosts/MostRecentPost';
 
-const SinglePage = ({detaisPost}) => {
+const SinglePage = ({detaisPost, recentPost}) => {
   return (
     <div>
     <div className="min-h-screen bg-white text-gray-800">
@@ -69,12 +70,7 @@ const SinglePage = ({detaisPost}) => {
           <div>
             <h2 className="text-lg font-semibold text-red-600 mb-4">MOST RECENT</h2>
             <div className="space-y-4">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <div key={n} className="flex gap-3 items-start">
-                  <span className="text-red-600 font-bold text-xl">{n}.</span>
-                  <p className="text-sm leading-tight">Recent update headline {n}...</p>
-                </div>
-              ))}
+              <MostRecentPost recentPost={recentPost} /> 
             </div>
           </div>
         </aside>
