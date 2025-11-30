@@ -6,7 +6,7 @@ const RelesePost = ({relesePost}) => {
     <>
        <article className="lg:col-span-2">
             <div className="flex flex-col gap-4">
-              <span className="inline-block bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">PRESS RELEASE</span>
+              <span className="inline-block bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">TRANDING</span>
               {
                 relesePost?.map((post) => 
                   <div key={post._id}>
@@ -17,7 +17,7 @@ const RelesePost = ({relesePost}) => {
                           alt="hero"
                           width={1500}       
                           height={1000}       
-                          className="w-full h-90 object-cover rounded-none"
+                          className="w-full h-105 object-cover rounded-none"
                         />
                        </Link>
                        <Link href={`/${post.cname}/${post.slug}`} className="text-gray-600 mt-5 block">{post.content}</Link>

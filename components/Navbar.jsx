@@ -6,7 +6,7 @@ import { getAllCategory } from "@/database/queries";
 const Navbar = async ({sideMenu}) => {
  const session = await auth();
  const navBar = await getAllCategory();
- 
+
   return (
     <div>
       <div className="container mx-auto">

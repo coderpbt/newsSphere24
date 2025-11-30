@@ -8,7 +8,7 @@ const postSchema =  new Schema(
     excerpt: { type: String },
     featuredImage: { type: String },
     category: { type: mongoose.Schema.Types.ObjectId, ref: "categories" },
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
+    author: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
     authorName: { type: String },
     tags: { type: [String], default: [] },
     viewCount: { type: Number, default: 0 },

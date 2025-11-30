@@ -6,7 +6,11 @@ import { postModel } from "../models/posts-model";
 export async function getAllCategory(){
    await dbConnect();
   const category =  await categoriesModel.find().lean();
-  return category;
+  // return category;
+    return category.map(cat => ({
+    _id: cat._id.toString(),
+    cname: cat.cname
+  }));
 }
 
 //Get All CategoryWise Post
@@ -93,4 +97,26 @@ export async function getPostByCategoryList(categories, limit = 4) {
     .limit(limit * categories.length)
     .lean();
   return categoryList;
+}
+
+//Get Related Post
+export async function getRelatedPost(categoryName, currentId, limit) {
+  await dbConnect();
+  const relatedPost = await postModel
+    .find({ 
+      cname: categoryName,
+      _id : {$ne : currentId}
+    })
+    .sort({ viewCount : -1 })
+    .limit(limit)
+    .lean();
+  return relatedPost;
+}
+
+
+//Get Related Post
+export async function createPost(data) {
+  await dbConnect();
+  const post = await postModel.create(data);
+  return post;
 }

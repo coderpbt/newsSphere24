@@ -13,7 +13,7 @@ const HomePage = async () => {
     getReleasePost(1),
     getReleasePost(10),
   ]);
-
+ console.log("releasePost", releasePost);
   const CategoryIndexPost = await getCategoryIndexPost();
   const recentPost = await getMostRecentPost(15);
   const popularPost = await getMostPopularPost(15);

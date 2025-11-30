@@ -1,8 +1,9 @@
 import { bdTime } from '@/lib/formateTime';
 import Image from 'next/image';
 import MostRecentPost from '../Home/GetPosts/MostRecentPost';
+import RelatedPost from '../Home/GetPosts/RelatedPost';
 
-const SinglePage = ({detaisPost, recentPost}) => {
+const SinglePage = ({detaisPost, recentPost, relatedPost}) => {
   return (
     <div>
     <div className="min-h-screen bg-white text-gray-800">
@@ -55,14 +56,9 @@ const SinglePage = ({detaisPost, recentPost}) => {
         <aside className="space-y-10">
           {/* Most Popular */}
           <div>
-            <h2 className="text-lg font-semibold text-red-600 mb-4">MOST POPULAR</h2>
+            <h2 className="text-lg font-semibold text-red-600 mb-4">RELATED POST</h2>
             <div className="space-y-4">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <div key={n} className="flex gap-3 items-start">
-                  <span className="text-red-600 font-bold text-xl">{n}.</span>
-                  <p className="text-sm leading-tight">Sample popular headline {n}...</p>
-                </div>
-              ))}
+             <RelatedPost relatedPost={relatedPost} />
             </div>
           </div>
 
