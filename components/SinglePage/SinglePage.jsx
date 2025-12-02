@@ -12,7 +12,6 @@ const SinglePage = ({detaisPost, recentPost, relatedPost}) => {
       </div>
 
       <section className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {/* Article Body */}
         <div className="lg:col-span-2">
           <h1 className="text-2xl md:text-3xl font-semibold leading-snug">
             {detaisPost.title}
@@ -26,14 +25,12 @@ const SinglePage = ({detaisPost, recentPost, relatedPost}) => {
               className="w-full h-[500px] object-cover rounded mt-4"
             />
 
-          {/* Meta Info */}
           <div className="flex flex-wrap items-center gap-3 mt-4 text-sm">
             <span className="font-semibold">Created by </span>
             <span className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded text-xs">{detaisPost.authorName}</span>
             <span className="text-gray-500">{bdTime(detaisPost.updatedAt)}</span>
           </div>
 
-          {/* Article Text */}
           <article className="mt-6 text-sm leading-relaxed text-gray-700 space-y-4">
             <p>
              {detaisPost.content}
@@ -52,9 +49,7 @@ const SinglePage = ({detaisPost, recentPost, relatedPost}) => {
           </div>
         </div>
 
-        {/* Sidebar */}
-        <aside className="space-y-10">
-          {/* Most Popular */}
+        <aside className="space-y-10 mb-6">
           <div>
             <h2 className="text-lg font-semibold text-red-600 mb-4">RELATED POST</h2>
             <div className="space-y-4">
@@ -62,7 +57,6 @@ const SinglePage = ({detaisPost, recentPost, relatedPost}) => {
             </div>
           </div>
 
-          {/* Most Recent */}
           <div>
             <h2 className="text-lg font-semibold text-red-600 mb-4">MOST RECENT</h2>
             <div className="space-y-4">

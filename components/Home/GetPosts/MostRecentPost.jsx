@@ -4,11 +4,11 @@ import Link from "next/link";
 const MostRecentPost = ({ recentPost }) => {
   const isGrid = recentPost?.length >= 15;
   return (
-    <div className="md:col-span-3 bg-white">
+    <div className="md:col-span-2 lg:col-span-3 bg-white">
       <div
         className={
           isGrid
-            ? "grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4"
+            ? "grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4"
             : "flex flex-col gap-4"
         }
       >

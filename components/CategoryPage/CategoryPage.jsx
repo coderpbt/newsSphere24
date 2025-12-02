@@ -12,12 +12,10 @@ const CategoryPage = ({post, recentPost, popularPost}) => {
   return (
     <div>
     <div className="min-h-screen bg-white text-gray-800">
-      {/* Breadcrumb */}
       <div className="container mx-auto px-4 py-4 text-xs text-gray-500 uppercase">HOME &gt; {firstPost.cname}</div>
 
-      {/* Article Section */}
       <section className="container mx-auto px-4">
-        <div className="bg-white border rounded-lg p-6 shadow-sm grid grid-cols-2 gap-5">
+        <div className="bg-white border rounded-lg p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
                <Link href={`/${firstPost.cname}/${firstPost.slug}`} className="text-2xl md:text-3xl font-semibold leading-snug hover:underline">
                   {firstPost.title}
@@ -32,8 +30,7 @@ const CategoryPage = ({post, recentPost, popularPost}) => {
                 <p className="mt-4 text-gray-700 leading-relaxed text-sm">
                   {firstPost.content}
                 </p>
-
-          <Link href={`/${firstPost.cname}/${firstPost.slug}`} className="mt-4 inline-block bg-red-600 text-white px-4 py-2 text-sm rounded hover:bg-red-700">Read More</Link>
+               <Link href={`/${firstPost.cname}/${firstPost.slug}`} className="mt-4 inline-block bg-red-600 text-white px-4 py-2 text-sm rounded hover:bg-red-700">Read More</Link>
           </div>
          
           <div className="mt-4">
@@ -47,12 +44,9 @@ const CategoryPage = ({post, recentPost, popularPost}) => {
                 />
             </Link>
           </div>
-
-
         </div>
       </section>
 
-      {/* Related Stories */}
       <section className="container mx-auto px-4 mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         {relatedPosts.map((i) => (
           <article key={i._id} className="flex gap-3 items-start border rounded p-3">
@@ -74,9 +68,7 @@ const CategoryPage = ({post, recentPost, popularPost}) => {
         ))}
       </section>
 
-      {/* Popular + Recent */}
       <section className="container mx-auto px-4 mt-10 mb-9 grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Most Popular */}
         <div>
           <h2 className="text-lg font-semibold text-red-600 mb-4">MOST POPULAR</h2>
           <div className="space-y-4">
@@ -84,7 +76,6 @@ const CategoryPage = ({post, recentPost, popularPost}) => {
           </div>
         </div>
 
-        {/* Most Recent */}
         <div>
           <h2 className="text-lg font-semibold text-red-600 mb-4">MOST RECENT</h2>
           <div className="space-y-4">
@@ -93,7 +84,6 @@ const CategoryPage = ({post, recentPost, popularPost}) => {
         </div>
       </section>
     </div>
-
     </div>
   );
 };

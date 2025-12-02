@@ -2,6 +2,7 @@ import { serializePost } from "@/lib/serializePost";
 import { dbConnect } from "@/lib/mongoConnect";
 import { categoriesModel } from "../models/categories-models";
 import { postModel } from "../models/posts-model";
+import { commentModel } from "../models/comments-models";
 
 //Get All Category
 export async function getAllCategory(){
@@ -117,4 +118,12 @@ export async function createPost(data) {
   await dbConnect();
   const post = await postModel.create(data);
   return serializePost(post.toObject());
+}
+
+
+//Get All Comments by ID 
+export async function getAllComments(postId) {
+  await dbConnect();
+  const comments = await commentModel.find({ postId : postId }).lean();
+  return comments;
 }

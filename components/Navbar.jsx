@@ -3,24 +3,29 @@ import { auth } from "@/auth";
 import Link from "next/link";
 import Logout from "./Logout/Logout";
 import { getAllCategory } from "@/database/queries";
-import MobileMenu from "./MobileMenu"; // make sure path is correct
+import MobileMenu from "./MobileMenu"; 
 
 const Navbar = async ({ sideMenu }) => {
+    // let session = null;
+    //   try {
+    //     session = await auth();
+    //   } catch (error) {
+    //     console.warn('JWT decode failed, treating as unauthenticated', error);
+    //     session = null;
+    //   }
+
   const session = await auth();
-  const navBar = await getAllCategory(); // ensure this returns plain objects
+  const navBar = await getAllCategory(); 
 
   return (
      <header className="bg-white border-b border-b-amber-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-3">
-
-          {/* Left brand */}
           <div>
             <Link className="font-bold text-[30px]" href="/">NewsSphere 24</Link>
           </div>
 
-          {/* Desktop nav (hidden on small screens) */}
-          <nav className="hidden md:block">
+          <nav className="hidden lg:block">
             <div className="mb-2.5">
               <ul className="flex items-center gap-2.5 justify-end">
                 <li>
@@ -50,8 +55,7 @@ const Navbar = async ({ sideMenu }) => {
             </ul>
           </nav>
 
-          {/* Mobile: hamburger and MobileMenu component (visible on md-) */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <MobileMenu navItems={navBar} session={session} />
           </div>
 

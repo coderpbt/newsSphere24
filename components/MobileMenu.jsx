@@ -8,8 +8,7 @@ const MobileMenu = ({ navItems = [], session }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-       {/* Hamburger visible on md: hidden on md+ */}
-      <div className="md:hidden flex items-center">
+      <div className="lg:hidden flex items-center">
         <button
           aria-label="Open menu"
           onClick={() => setOpen(true)}
@@ -20,19 +19,15 @@ const MobileMenu = ({ navItems = [], session }) => {
           </svg>
         </button>
       </div>
-
-      {/* Slide-over / drawer */}
       <div
-        className={`fixed inset-0 z-50 transform ${open ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 md:hidden`}
+        className={`fixed inset-0 z-50 transform ${open ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 lg:hidden`}
         aria-hidden={!open}
       >
-        {/* backdrop */}
         <div
           className={`absolute inset-0 bg-black/40 ${open ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
           onClick={() => setOpen(false)}
         />
 
-        {/* panel */}
         <aside className="absolute right-0 top-0 h-full w-80 bg-white shadow-lg p-6 overflow-auto">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold">Menu</h3>
@@ -42,14 +37,11 @@ const MobileMenu = ({ navItems = [], session }) => {
               </svg>
             </button>
           </div>
-
-          {/* auth area */}
           <div className="mb-6">
             {session ? (
               <div className="flex flex-col gap-2">
                 <div className="text-sm font-medium text-gray-800">{session.user?.name}</div>
                 <Link href="/addpost" className="text-sm text-orange-600 hover:underline">Add Post</Link>
-                {/* use your Logout component */}
                 <div><Logout /></div>
               </div>
             ) : (
@@ -59,7 +51,6 @@ const MobileMenu = ({ navItems = [], session }) => {
             )}
           </div>
 
-          {/* nav links */}
           <nav>
             <ul className="flex flex-col gap-3">
               {navItems.map((nav) => (
@@ -73,11 +64,6 @@ const MobileMenu = ({ navItems = [], session }) => {
               ))}
             </ul>
           </nav>
-
-          {/* optional footer small links */}
-          <div className="mt-8 border-t pt-4 text-sm text-gray-500">
-            © {new Date().getFullYear()} NewsSphere 24
-          </div>
         </aside>
       </div>
     </>
