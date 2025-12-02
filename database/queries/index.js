@@ -124,6 +124,9 @@ export async function createPost(data) {
 //Get All Comments by ID 
 export async function getAllComments(postId) {
   await dbConnect();
-  const comments = await commentModel.find({ postId : postId }).lean();
+  const comments = await commentModel
+  .find({ postId : postId })
+  .sort({ createdAt : -1 })
+  .lean();
   return comments;
 }
