@@ -160,7 +160,7 @@ const AddPostForm = ({ categories, session }) => {
             </select>
           </div>
 
-                      <div>
+          <div>
               <label className="block text-sm text-gray-600 mb-1">
                 Tags
               </label>
@@ -211,7 +211,7 @@ const AddPostForm = ({ categories, session }) => {
             <button
               type="submit"
               disabled={uploading}
-              className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-70 disabled:cursor-not-allowed rounded-lg font-semibold text-lg transition"
+              className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-70 disabled:cursor-not-allowed rounded-lg font-semibold text-lg transition cursor-pointer"
             >
               {uploading ? "Submitting..." : "Submit"}
             </button>

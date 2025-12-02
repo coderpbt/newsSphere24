@@ -1,13 +1,13 @@
+import { serializePost } from "@/lib/serializePost";
 import { dbConnect } from "@/lib/mongoConnect";
 import { categoriesModel } from "../models/categories-models";
 import { postModel } from "../models/posts-model";
 
 //Get All Category
 export async function getAllCategory(){
-   await dbConnect();
-  const category =  await categoriesModel.find().lean();
-  // return category;
-    return category.map(cat => ({
+  await dbConnect();
+  const category = await categoriesModel.find().lean();
+  return category.map(cat => ({
     _id: cat._id.toString(),
     cname: cat.cname
   }));
@@ -15,77 +15,76 @@ export async function getAllCategory(){
 
 //Get All CategoryWise Post
 export async function getCategoryWisePost(categoryName){
-   await dbConnect();
-  const categoryWise =  await postModel
-  .find({cname : categoryName})
-  .lean();
-  return categoryWise;
+  await dbConnect();
+  const categoryWise = await postModel
+    .find({cname : categoryName})
+    .lean();
+  return categoryWise.map(serializePost);
 }
 
 //Get All Post
 export async function getAllPost(){
-   await dbConnect();
-  const post =  await postModel.find().lean();
-  return post;
+  await dbConnect();
+  const post = await postModel.find().lean();
+  return post.map(serializePost);
 }
 
 //Get Release Post
 export async function getReleasePost(limit) {
-   await dbConnect();
+  await dbConnect();
   const post = await postModel
     .find()
     .sort({ createdAt: -1 })  
     .limit(limit)                 
     .lean();
-  return post;
+  return post.map(serializePost);
 }
 
 //Get category wise Index Post
 export async function getCategoryIndexPost() {
-   await dbConnect();
+  await dbConnect();
   const posts = await postModel.aggregate([
     { $sort: { createdAt: -1 } },
     {
       $group: {
-        _id: "$category",      
+        _id: "$cname",      
         post: { $first: "$$ROOT" }  
       }
     },
-
     { $replaceRoot: { newRoot: "$post" } },
     { $sort: { createdAt: -1 } }
   ]);
 
-  return posts;
+  return posts.map(serializePost);
 }
 
 //Get Post By Slug
 export async function getPostBySlug(slug){
   await dbConnect();
-  const postSlug =  await postModel.findOne({slug: slug}).lean();
-  return postSlug;
+  const postSlug = await postModel.findOne({slug: slug}).lean();
+  return serializePost(postSlug);
 }
 
 //Get Most Recent Post
 export async function getMostRecentPost(limt){
-    await dbConnect();
-    const recentPost =  await postModel
+  await dbConnect();
+  const recentPost = await postModel
     .find()
     .sort({ createdAt: -1 })
     .limit(limt) 
     .lean(); 
-    return recentPost;
+  return recentPost.map(serializePost);
 }
 
 //Get Most Popular Post
 export async function getMostPopularPost(limit) {
   await dbConnect();
   const popularPost = await postModel
-    .find({}, "title featuredImage slug viewCount cname title excerpt")
+    .find({}, "title featuredImage slug viewCount cname excerpt")
     .sort({ viewCount: -1 })
     .limit(limit)
     .lean();
-  return popularPost;
+  return popularPost.map(serializePost);
 }
 
 //Get Post By Category List -> Home
@@ -96,7 +95,7 @@ export async function getPostByCategoryList(categories, limit = 4) {
     .sort({ createdAt : -1 })
     .limit(limit * categories.length)
     .lean();
-  return categoryList;
+  return categoryList.map(serializePost);
 }
 
 //Get Related Post
@@ -110,13 +109,12 @@ export async function getRelatedPost(categoryName, currentId, limit) {
     .sort({ viewCount : -1 })
     .limit(limit)
     .lean();
-  return relatedPost;
+  return relatedPost.map(serializePost);
 }
 
-
-//Get Related Post
+//Create Post
 export async function createPost(data) {
   await dbConnect();
   const post = await postModel.create(data);
-  return post;
+  return serializePost(post.toObject());
 }
