@@ -1,7 +1,9 @@
 import { commentModel } from "@/database/models/comments-models";
+import { dbConnect } from "@/lib/mongoConnect";
 import { NextResponse } from "next/server";
 
 export async function POST(response){
+  await dbConnect();
   const body = await response.json();
 
   

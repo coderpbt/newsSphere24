@@ -23,7 +23,7 @@ const CommentForm = ({postId, user}) => {
   };
   return (
     <>
-      <div className="max-w-2xl mb-6 ml-2">
+      <div className="max-w-2xl mb-4 ml-2 border-b border-gray-300 pb-2">
           <div className="gap-3">
                 <textarea
                   value={text}
