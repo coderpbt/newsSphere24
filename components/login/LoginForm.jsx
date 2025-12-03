@@ -1,6 +1,7 @@
 "use client";
 
 import { login } from '@/app/actions';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
@@ -64,6 +65,13 @@ const LoginForm = () => {
                 >
                   Login
                 </button>
+
+                  <p className="text-center text-gray-600 mt-4">
+                    Dont have an account?{" "}
+                    <Link href="/register" className="text-blue-600 hover:underline">
+                        Sign Up
+                    </Link>
+                </p>
               </form>
             </div>
           </div>
