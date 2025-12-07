@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 NewsSphere 24
 
-## Getting Started
+A modern full-stack news portal built with Next.js, MongoDB, NextAuth, and Tailwind CSS.
 
-First, run the development server:
+## 🔧 Tech Stack
 
+- **Next.js 15** - App Router + Server Actions
+- **MongoDB & Mongoose** - Database and ODM
+- **NextAuth** - Credentials-based authentication
+- **Tailwind CSS** - Utility-first styling
+- **Cloudinary** - Image upload and optimization
+- **Swiper.js** - Touch-enabled sliders
+
+## ✨ Main Features
+
+- **Multi-category news system** - Organize content across different topics
+- **Full CRUD for posts** - Create, read, update, and delete articles
+- **Author-only edit/delete** - Content management restricted to authors
+- **Secure login & registration** - User authentication system
+- **Protected routes + role-based access** - Authorization and permissions
+- **User dashboard & profile** - Personalized user experience
+- **Comment system** - Engage with articles (login required)
+- **Responsive UI** - Smooth animations and mobile-friendly design
+- **Cloudinary integration** - Optimized image upload and delivery
+
+## ⚙️ Highlights
+
+- Built-in REST APIs powered by Next.js server
+- Scalable MongoDB schema design
+- Reusable Tailwind components
+- Optimized performance with Server Components
+
+## 🔗 Live Demo
+
+Check out the live application: [https://news-sphere24.vercel.app/](https://news-sphere24.vercel.app/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm/yarn
+- MongoDB database
+- Cloudinary account
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/coderpbt/newssphere24.git
+cd newssphere24
+```
+
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+
+3. Run the development server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📝 License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is open source and available under the [MIT License](LICENSE).
 
-## Learn More
+## 🤝 Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/newssphere24/issues).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👨‍💻 Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Your Name
+- GitHub: [@yourusername](https://github.com/coderpbt)
 
-## Deploy on Vercel
+## 🌟 Show your support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Give a ⭐️ if this project helped you!
