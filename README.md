@@ -4,7 +4,7 @@ A modern full-stack news portal built with Next.js, MongoDB, NextAuth, and Tailw
 
 ## 🔧 Tech Stack
 
-- **Next.js 15** - App Router + Server Actions
+- **Next.js** - App Router + Server Actions
 - **MongoDB & Mongoose** - Database and ODM
 - **NextAuth** - Credentials-based authentication
 - **Tailwind CSS** - Utility-first styling
