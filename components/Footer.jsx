@@ -2,6 +2,7 @@
 import Link from 'next/link';
 
 const Footer = () => {
+   const currentYear = new Date().getFullYear();
   return (
     <>
     <footer className="bg-black text-gray-300 pt-12 pb-3">
@@ -52,7 +53,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-gray-800 mt-3 pt-3 text-center text-gray-400 text-sm">
-        © 2025 NewsSphere 24. All rights reserved.
+        © {currentYear} NewsSphere 24. All rights reserved.
       </div>
     </footer>
 

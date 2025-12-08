@@ -75,10 +75,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/newssphere24/issues).
 
-## 👨‍💻 Author
-
-Your Name
-- GitHub: [@yourusername](https://github.com/coderpbt)
 
 ## 🌟 Show your support
 
